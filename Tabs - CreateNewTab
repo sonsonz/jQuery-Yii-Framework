@@ -1,0 +1,26 @@
+// Create New Tab
+
+
+$("#newTab").on("click", "a", function(e){
+  e.preventDefault();
+  var tabs = $("#myTab");
+  var tabscontent = $(".tab-content");
+  var title = $(this).attr('title');
+  var url = $(this).attr('href');
+  var tabId = $(this).attr('id');
+  $('div.active', tabs).removeClass('active');
+  $('div.active', tabscontent).removeClass('active');
+  $(tabs).append('<li><a href="#'+tabId+'">'+title+'</a></li>');
+  $('.nav-tabs a:last').tab('show');
+  alert($(".tab-content").attr('href'));
+  $(tabscontent).append('<div class="tab-pane in active" id="'+tabId+'">'+title+'</div>');
+});
+
+$("#myTab").on("click", "a", function(e){
+  e.preventDefault();
+  $(this).tab('show');
+  var idTab = $(this).attr('href').substr(1);
+  var tabscontent = $(".tab-content");
+  $('div.active', tabscontent).removeClass('active');
+  $('div#'+idTab, tabscontent).addClass('active');
+});
